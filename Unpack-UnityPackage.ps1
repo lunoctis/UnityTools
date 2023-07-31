@@ -49,7 +49,10 @@ Get-ChildItem $tempFolder | ForEach-Object {
             New-Item -Path $_parent -ItemType Directory | Out-Null
         }
         Copy-Item -Path $_itemAssetFile -Destination $_dstPath
-        Copy-Item -Path $_itemMetaFile -Destination $_dstMetaPath
+        if （Test-Path $_itemMetaFile)
+        {
+            Copy-Item -Path $_itemMetaFile -Destination $_dstMetaPath
+        }
     }
     else
     {
